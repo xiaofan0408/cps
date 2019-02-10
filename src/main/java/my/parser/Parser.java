@@ -43,7 +43,7 @@ public class Parser {
     private Token is_punc(String ch) throws Exception{
         Token tok = input.peek();
         if (tok!=null) {
-            if ( tok.getType().equals("punc") && (ch!=null || tok.getValue().equals(ch))){
+            if ( tok.getType().equals("punc") && (!notNull(ch) || tok.getValue().equals(ch))){
                 return tok;
             }
         }
@@ -52,7 +52,7 @@ public class Parser {
     private Token is_kw(String kw) throws Exception{
         Token tok = input.peek();
         if (tok!=null) {
-            if ( tok.getType().equals("kw") && (kw!=null || tok.getValue().equals(kw))){
+            if ( tok.getType().equals("kw") && (!notNull(kw)|| tok.getValue().equals(kw))){
                 return tok;
             }
         }
@@ -61,7 +61,7 @@ public class Parser {
     private Token is_op(String op) throws Exception{
         Token tok = input.peek();
         if (tok!=null) {
-            if ( tok.getType().equals("op") && (op!=null || tok.getValue().equals(op))){
+            if ( tok.getType().equals("op") && (!notNull(op) || tok.getValue().equals(op))){
                 return tok;
             }
         }
@@ -229,7 +229,7 @@ public class Parser {
             return null;
         });
     }
-    private ProgNode parse_toplevel() throws Exception{
+    public ProgNode parse_toplevel() throws Exception{
         List<Node> prog = new ArrayList<>();
         while (!input.eof()) {
             prog.add(parse_expression());
@@ -297,6 +297,10 @@ public class Parser {
             default:
                 return null;
         }
+    }
+
+    private boolean notNull(String op) {
+        return op != null;
     }
 
 }

@@ -129,8 +129,9 @@ public class Lexer {
         if (current == null) {
             current = read_next();
             return current;
+        } else {
+            return current;
         }
-        return null;
     }
     public Token next() throws Exception{
         Token tok = current;

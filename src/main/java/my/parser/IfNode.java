@@ -13,5 +13,4 @@ public class IfNode extends Node {
     private Node then;
 
     private Node elsen;
-
 }

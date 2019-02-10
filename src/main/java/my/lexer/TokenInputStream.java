@@ -19,6 +19,9 @@ public class TokenInputStream {
     }
 
     public String next() {
+        if (pos >= this.input.length()) {
+            return "";
+        }
         Character ch = this.input.charAt(pos++);
         if (ch == '\n'){
             line++;
@@ -30,6 +33,9 @@ public class TokenInputStream {
     }
 
     public String peek() {
+        if (pos >= this.input.length()) {
+            return "";
+        }
         Character ch =this.input.charAt(pos);
         return ch.toString();
     }
